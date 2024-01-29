@@ -1,0 +1,78 @@
+@use '../helper/_variables' as *
+@use '../helper/_mixin' as *
+@use '../layout/_layout' as *
+
+.banner-section
+  position: relative
+  padding: 3.5rem 0
+
+  .slide-button-group
+    position: absolute
+    top: 50%
+    left: 0
+    width: 100%
+    @include flex($justify: space-between)
+    padding: 0 2rem
+    gap: .5rem
+    z-index: 10
+
+    .slide-button-next, .slide-button-prev
+      height: 4rem
+      width: 4rem
+
+      &::after
+        border-color: $light
+      i
+        background-color: $light
+        color: $pri
+        font-size: 1.5rem
+
+  .mySwiper
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+    .swiper-slide
+      width: 100%
+      height: 100%
+
+  .item
+    cursor: pointer
+    position: relative
+
+    &::after
+      content: ""
+      @include dark($opacity: 0)
+      background-image: linear-gradient(0, rgba($dark, .7), rgba($dark, 0), rgba($dark, 0), rgba($dark, 0))
+
+    &:hover
+      .content
+        h2
+          color: $sec
+          text-decoration: underline
+
+    .content
+      position: absolute
+      bottom: 0
+      left: 0
+      z-index: 2
+      color: $light
+      text-align: left
+      max-width: 800px
+      padding: 1.5rem
+
+      h2
+        font-size: 1.7rem
+        font-weight: 600
+        line-height: 130%
+        margin-bottom: .5rem
+
+      p
+        font-size: 1rem
+
+    .image
+      height: 35rem
+      width: 100%
+
+      img
+        @include image()

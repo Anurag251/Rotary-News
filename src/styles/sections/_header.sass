@@ -1,0 +1,236 @@
+@use '../helper/_variables' as *
+@use '../helper/_mixin' as *
+@use '../layout/_layout' as *
+
+header
+  width: 100%
+  background-color: $light
+  z-index: 100
+  @include trans()
+
+  &.active
+    position: sticky
+    top: -6.8rem
+
+    nav
+      .logo
+        width: 8rem
+        margin-right: 2rem
+
+  .logo
+    height: 100%
+    width: 14rem
+    color: $pri
+    padding: .5rem 0
+
+    .logo-image
+      @include image()
+      object-fit: contain
+
+  nav
+    @include flex($justify: flex-start)
+    height: 65px
+    background-color: $pri
+    width: 100%
+
+    .wrapper
+      width: 100%
+      height: 100%
+      @include flex($justify: flex-start)
+
+    .logo
+      height: 100%
+      width: 0
+      @include trans()
+      margin-right: 0
+      @include flex($justify: flex-start)
+
+    ul
+      @include flex($justify: flex-start)
+      height: 100%
+      gap: 1.5rem
+
+      li
+        height: 100%
+
+        a
+          height: 100%
+
+        button
+          height: 100%
+          color: $light
+          font-size: 1rem
+          text-transform: capitalize
+          font-weight: 600
+          cursor: pointer
+          // padding: 0 1rem
+
+    .side-nav-button
+      padding: .3rem .7rem
+      border-radius: .4rem
+      color: $light
+      font-size: 1.1rem
+      cursor: pointer
+      display: none
+
+    .admission-button
+      button
+        padding: .7rem 1.3rem
+        border-radius: 2rem
+        background-color: $pri
+        color: $light
+        font-size: 1rem
+        font-weight: 600
+        cursor: pointer
+        @include fastTrans()
+
+        &:hover
+          // background-color: $sec
+          box-shadow: 0 0 10px rgba(var(--prirgb), .7)
+          transform: scale(1.1)
+
+    .search-button
+      display: none
+
+.side-nav
+  position: fixed
+  left: 0
+  top: 0
+  height: 100%
+  width: 100%
+  z-index: 100
+  @include flex($justify: flex-start)
+  pointer-events: none
+
+  &.active
+    pointer-events: all
+
+    .side-nav-bg
+      opacity: 1
+      backdrop-filter: blur(5px)
+      pointer-events: all
+
+    .side-nav-inner
+      left: 0
+      opacity: 1
+
+      .side-nav-close
+        opacity: 1
+
+  .side-nav-bg
+    @include dark($opacity: .7)
+    background-color: rgba($light, .5)
+    backdrop-filter: blur(0)
+    z-index: 2
+    @include trans()
+    opacity: 0
+
+  .side-nav-inner
+    position: relative
+    height: 100%
+    width: 13rem
+    left: -15rem
+    background-color: $light
+    @include flex($justify: center)
+    flex-direction: column
+    padding: 1rem
+    z-index: 3
+    @include trans()
+    opacity: 0
+    box-shadow: 0 0 20px rgba($dark, .3)
+
+    .side-nav-close
+      position: absolute
+      top: 1rem
+      right: 1rem
+      height: 2.6rem
+      width: 2.6rem
+      border-radius: 50%
+      @include flex($justify: center)
+      background: $light
+      color: $pri
+      font-size: 1.3rem
+      cursor: pointer
+      z-index: 4
+      opacity: 0
+      @include trans()
+
+      &:hover
+        background: #a00000
+        color: $light
+
+    .logo
+      width: 100%
+      overflow: hidden
+
+      .logo-image
+        @include image()
+        object-fit: contain
+        border-radius: .4rem
+
+    nav
+      @include flex($justify: flex-start)
+      width: 100%
+      margin-top: 2rem
+
+      .nav-links
+        @include flex($justify: flex-start)
+        flex-direction: column
+        width: 100%
+
+        .link
+          width: 100%
+          position: relative
+
+          &:hover
+            &::after
+              transform: translate(6px, -50%)
+
+            .nav-button
+              color: $dark
+              background-color: rgba(var(--prirgb), .1)
+
+          &::after
+            content: "→"
+            position: absolute
+            left: 1rem
+            top: 50%
+            transform: translateY(-50%)
+            font-size: 1rem
+            @include fastTrans()
+
+          .nav-button
+            padding: 1rem
+            cursor: pointer
+            font-size: 1.1rem
+            font-weight: 600
+            color: $dark
+            width: 100%
+            text-align: left
+            border-radius: .4rem
+            padding-left: 3rem
+
+    .social-links
+      position: absolute
+      bottom: 1rem
+      left: 50%
+      transform: translateX(-50%)
+      @include flex($justify: flex-end)
+      gap: 1rem
+
+      li
+        i
+          height: 2rem
+          width: 2rem
+          border-radius: 50%
+          border: 1px solid $dark
+          @include flex($justify: center)
+          color: $dark
+          @include fastTrans()
+
+        &:hover
+          i
+            background-color: $pri
+            color: $light
+            border-color: $pri
+            transform: scale(1.2)
